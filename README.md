@@ -1,62 +1,75 @@
-### Nodejs-Mailer-App
+# **Node.js Mailer Service**
 
-A simple and modular Node.js application for sending transactional emails using Express, Nodemailer, Mongoose, and Joi for validation.
-This project demonstrates clean folder structure, environment-based configuration, and email workflow automation.
+A lightweight Node.js + Express backend service for sending emails using SMTP (Gmail) and MongoDB. This project demonstrates environment-based configuration, database connectivity with Mongoose, and a simple API-driven mail workflow.
 
-### Features
+---
 
-User registration with email verification
-Token generation & storage
-Modular MVC-style structure
-Environment-based configuration
-Reusable email utility
-MongoDB connection with Mongoose
-Input validation using Joi
+## **Features**
 
-### Folder Structure
-Nodejs-Mailer-App
-│── index.js          # App entry point
-│── db.js             # Database connection
-│── .env              # Environment settings
-│── package.json
-│
-├── model/
-│   ├── user.js       # User schema
-│   └── token.js      # Verification token schema
-│
-├── routes/
-│   └── users.js      # User-related routes
-│
-└── utils/
-    └── email.js      # Nodemailer email helper
+- Express-based REST API
+- MongoDB connection using Mongoose
+- SMTP-based email sending
+- Environment variable configuration using dotenv
+- Modular route separation
 
-### Tech Stack
 
-Node.js
-Express
-MongoDB + Mongoose
-Nodemailer
-Joi
-dotenv
+## **Tech Stack**
 
-### Installation
+- Node.js
+- Express
+- MongoDB (Mongoose)
+- SMTP (Gmail)
+- dotenv
 
-npm init --yes
-npm install express mongoose nodemailer joi dotenv
 
-### Running the App
+## **Project Structure**
 
-Create a .env file in the project root:
+**Nodejs-Mailer-App**  
+│  
+│__ index.js        # Application entry point  
+│__ db.js           # MongoDB connection  
+│__ routes/  
+│   └── users.js    # User / mail-related routes  
+│__.env.example    # Environment variable template  
+│__ package.json  
 
-MONGO_URI=your_mongodb_url
-EMAIL_USER=your_email
-EMAIL_PASS=your_password
-PORT=5000
 
-Start the app:
+## **Environment Configuration**
 
-node index.js
+**Create a .env file in the project root:**
 
-### Sending an Email
+DB=your_mongodb_connection_string 
+HOST=smtp.gmail.com  
+USER=your_email@gmail.com  
+PASS=your_app_password  
+PORT=8080  
+BASE_URL=http://localhost:8080/api
 
-The /users route handles user registration and automatically triggers the email function via utils/email.js.
+⚠️ Use Gmail App Passwords. Do not use your real password.
+
+
+## **Running the Application**
+
+npm install  
+node index.js  
+
+Server will start at:
+http://localhost:8080
+
+
+## **API Usage (Example)**
+
+**POST** /api/user/send-mail
+
+Payload:
+
+{  
+  "to": "example@email.com",  
+  "subject": "Test Mail",  
+  "message": "Hello from Node Mailer App"  
+}  
+
+---
+**Notes**  
+This project focuses on backend mail handling.
+Can be extended with authentication, validation, or queue-based mail processing.
